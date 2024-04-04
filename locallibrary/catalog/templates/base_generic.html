@@ -15,15 +15,24 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <a class="navbar-brand" href="#">Local Library</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'index' %}">Home</a>
+          <a class="nav-item nav-link" href="{% url 'books' %}">All Books</a>
+          <a class="nav-item nav-link" href="{% url 'authors' %}">All Authors</a>
+        </div>
+      </div>
+    </nav>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
           {% block sidebar %}
-            <ul class="sidebar-nav">
-              <li><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'books' %}">All books</a></li>
-              <li><a href="{% url 'authors' %}">All authors</a></li>
-            </ul>
+            
             <ul class="sidebar-nav">
               
               <ul class="sidebar-nav">
@@ -49,14 +58,14 @@
                <li>Staff</li>
                <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
                 {% if perms.catalog.add_author %}
-                  <li><a href="{% url 'author-create' %}">Create author</a></li>
+                <li><a href="{% url 'author-create' %}">Create author</a></li>
                 {% endif %}
                
                {% endif %}
              
             {% endblock %}
         </div>
-        <div class="col-sm-10 ">{% block content %}{% endblock %}
+        <div class="col-sm-10 mt-3">{% block content %}{% endblock %}
           {% block pagination %}
     {% if is_paginated %}
         <div class="pagination">
